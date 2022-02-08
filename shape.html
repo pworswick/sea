@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<script type="text/javascript">
+
+var ct = 50;
+var th = 1;
+
+var arr=[0,0,0,0,0,0];
+var canvas;
+
+var ctx;
+
+      // JavaScript Document
+function draw()
+  {
+   canvas = document.getElementById('canvas');
+
+ 
+canvas.addEventListener("mousedown", function (e) { getCursorPosition(canvas, e);});
+  
+if (canvas.getContext) 
+    {
+    ctx = canvas.getContext('2d');
+    
+ 
+
+   // ctx.fillRect(25, 25, 100, 100);
+   // ctx.clearRect(45, 45, 60, 60);
+    ctx.strokeRect(ct, ct, ct, ct);
+    
+    for (z=1;z<6;z++)
+        {
+        ctx.strokeRect(z*ct,2*ct,ct,ct);    
+        
+        }
+    
+    //ctx.strokeRect(100,100,50,50);
+    //ctx.strokeRect(150,100,50,50);
+    //ctx.strokeRect(200,100,50,50);
+    //ctx.strokeRect(250,100,50,50);
+    }
+  }
+  
+function getCursorPosition(canvas, event) {
+    const rect = canvas.getBoundingClientRect()
+    const x = event.clientX - rect.left
+    const y = event.clientY - rect.top
+  //  console.log("x: " + x + " y: " + y)
+    
+    if (x>=50 && x<=100 && y>=50 && y<=100)
+        {
+        if (arr[0]==0)
+            {
+              ctx.fillRect(50+th,50+th,50-2*th,50-2*th);
+              arr[0] =1;
+             }
+              else
+              {
+              ctx.clearRect(50+th,50+th,50-2*th,50-2*th);
+              arr[0]=0;
+              }
+        }
+        
+    for (z=1;z<6;z++)
+        {
+        if (x>=ct*z && x<=ct*(z+1) && y>100 && y<=150)
+            {
+            if (arr[z]==0)
+                {
+                  ctx.fillRect(ct*z+th,ct*2+th,ct-2*th,ct-2*th);
+                  arr[z] =1;
+                 }
+                  else
+                  {
+                  ctx.clearRect(ct*z+th,ct*2+th,ct-2*th,ct-2*th);
+                  arr[z]=0;
+                  }
+            
+            
+            
+            }
+        
+        
+        
+        
+        
+        
+        
+        
+        }
+}
+
+/*
+const canvas = document.querySelector('canvas')
+canvas.addEventListener('mousedown', function(e) {
+    getCursorPosition(canvas, e)
+})
+*/
+
+
+
+
+</script>
+
+</head>
+<body onLoad='draw();'>
+
+<canvas id="canvas" width="500" height="200"></canvas>
+
+
+
+
+
+
+
+
+</body>
+</html>

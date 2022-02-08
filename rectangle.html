@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="750" height="250" map="planetmap">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.rect(0, 0, 150, 100);
+ctx.rect(0,100,150,100);
+ctx.rect(150,100,150,100);
+ctx.rect(300,100,150,100);
+ctx.rect(450,100,150,100);
+ctx.rect(600,100,150,100);
+ctx.stroke();
+
+
+
+
+</script>
+ 
+<body>
+<map name="planetmap">
+<area shape="rect" coords="0,0,150,100" href="sun.htm" alt="Sun">
+<area shape="rect" coords="0,100,150,100" href="mercur.htm" alt="Mercury">
+<area shape="rect" coords="150,100,150,100" href="venus.htm" alt="Venus">
+</map>
+
+</body>
+</html>

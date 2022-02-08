@@ -1,0 +1,51 @@
+<html>
+<head>
+
+
+</head>
+<body>
+
+<canvas width=725 height=420 id="demo"></canvas>
+
+
+<script>
+
+var ctx = demo.getContext('2d'),
+    img = new Image();
+
+/// we need to wait for the image to actually load:
+img.onload = function() {
+
+    /// image is loaded and we can raw it onto canvas
+    ctx.drawImage(this, 0, 0);
+
+    /// enable mouse click
+    demo.onclick = function(e) {
+
+        /// adjust mouse position to be relative to canvas
+        var rect = demo.getBoundingClientRect(),
+            x = e.clientX - rect.left,
+            y = e.clientY - rect.top;
+
+        /// grab a pixel
+        var data = ctx.getImageData(x, y, 1, 1).data;
+
+        /// check it's alpha value to see if we're in a map point
+        /// this of course assumes the map has transparent areas.
+        /// if not just check for the color values instead.
+        if (data[3] > 0) alert('We hit map');
+    }   
+}
+
+/// we need crossOrigin allowed image or we can't grab pixel later
+img.crossOrigin = 'anonymous';
+img.src = 'http://i.imgur.com/x8Ap3ij.png';
+
+</script>
+
+
+
+
+
+</body>
+</html>
